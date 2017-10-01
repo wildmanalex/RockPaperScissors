@@ -1,0 +1,175 @@
+<html>
+<head>
+    <script src="https://use.fontawesome.com/8f5e0c9388.js"></script> 
+    <link href="https://fonts.googleapis.com/css?family=Mukta" rel="stylesheet">
+    <title>Rock-Paper-Scissors</title>
+    <style>
+        body {
+            background-color:  #f6f6f6;
+        }
+        h1 {
+            font-family:'Mukta', sans-serif;
+            font-size: 2.5em;
+            text-align: center;
+            margin-top: 1.5em;
+        }
+        h3 {
+            font-family:'Mukta', sans-serif;
+            font-size: 22px;
+            margin-top: 10px;
+        }
+        #container {
+            background-color: white;
+            width:27em;
+            height: 22em;
+            margin: 7em auto;
+            box-shadow: 3px 3px 50px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        
+        .rps {
+            display: inline-block;
+            margin: 1.5em;
+            border-radius: 5px;
+        }
+        .rps button {
+            font-size: 20;
+            border-radius: 5px;
+            background-color: 
+        }
+        .rps #rock {
+            background-color: #E3AFA4;
+        }
+        .rps #paper {
+            background-color: #A4BFE3;
+        }
+        .rps #scissors {
+            background-color: #A4E3A6;
+        }
+        
+        #wins {
+            font-family:'Mukta', sans-serif;
+            font-size: 18px;
+            display: inline-block;
+            margin: 0 2em;
+        }
+       
+        #loses {
+            font-family:'Mukta', sans-serif;
+            font-size: 18px;
+            display: inline-block;
+            margin: 0 2em;
+        }
+        #reset {
+            font-family:'Mukta', sans-serif;
+            background-color: #F0B27A;
+            margin-top: -0.2em;
+            font-size: 25px;
+            border-radius: 5px;
+        }
+    </style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
+    <h1>Rock - Paper - Scissors</h1>
+ <body>
+     <div id="container">
+         <h3>Choose an option!</h3>
+         <div id="options">
+             <div class="rps"><button id = "rock" type ="button"><i class="fa fa-hand-rock-o fa-3x" aria-hidden="true"></i></button></div>
+             <div class="rps"><button id = "paper" type ="button"><i class="fa fa-hand-paper-o fa-3x" aria-hidden="true" ></i>
+</button></div>
+             <div class="rps"><button id = "scissors" type ="button"><i class="fa fa-hand-scissors-o fa-3x" aria-hidden="true"></i>
+</button></div>
+         </div>
+         <div class="score">
+             <div id ="wins">
+                 <p>Player Wins</p>
+                 0
+             </div>
+             
+             <div id ="loses">
+                 <p>Computer Wins</p>
+                 0
+             </div>
+         </div>
+             <button id="reset" type="button">Reset</button>
+     </div>
+<script>
+    
+var userChoice = "";
+var wins = 0;
+var loses = 0;
+//comp choice
+var getCompChoice = function() {
+var choice = Math.random();
+   if(choice < 0.34) {
+       return 'rock';
+   }
+   else if(choice <= 0.67) {
+       return 'paper';
+   }
+   else {
+       return 'scissors';
+   }
+};
+//compare function
+var compare = function(userChoice) {
+    compChoice = getCompChoice();
+    if(userChoice == compChoice) {
+        alert("Draw");
+    }
+    else if(userChoice == "rock" && compChoice == "scissors") {
+        wins++;
+        document.getElementById('wins').innerHTML = wins;
+        document.getElementById('loses').innerHTML = loses;
+        alert("Player Wins");
+    }
+    else if (userChoice == "paper" && compChoice == "rock") {
+        wins++;
+        document.getElementById('wins').innerHTML = wins;
+        document.getElementById('loses').innerHTML = loses;
+        alert("Player Wins");
+    }
+    else if (userChoice == "scissors" && compChoice == "paper") {
+        wins++;
+        document.getElementById('wins').innerHTML = wins;
+        document.getElementById('loses').innerHTML = loses;
+        alert("Player Wins");
+    }
+    else {
+        loses++;
+        document.getElementById('wins').innerHTML = wins;
+        document.getElementById('loses').innerHTML = loses;
+        alert("Player loses");
+    }
+};  
+//When reset button is clicked, scores change to zeros 
+var reset = function() {
+    loses = 0;
+    wins = 0;
+};
+//click events
+$('#rock').click(function() {
+    var result = compare('rock');
+    $('#decision').html(result);
+})
+$('#paper').click(function() {
+    var result = compare('paper');
+    $('#decision').html(result);
+})
+$('#scissors').click(function() {
+    var result = compare('scissors');
+    $('#decision').html(result);
+})
+$('#reset').click(function() {
+    var changeScore = reset()
+    document.getElementById('wins').innerHTML = wins;
+    document.getElementById('loses').innerHTML = loses;
+})
+</script>
+</body>
+</html>
+
+
+
